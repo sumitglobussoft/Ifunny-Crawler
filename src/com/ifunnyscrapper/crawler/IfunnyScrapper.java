@@ -94,11 +94,10 @@ public class IfunnyScrapper {
 //            objHashCrawledData.setHashId(obj);
 //            objIfunnyDataDao.insertIfunnyData(objHashCrawledData);
 //        }
-       
         Elements ele = doc.select("div[class=content-list__item]");
         System.out.println("" + ele.size());
         for (Element e1 : ele) {
-             JSONObject json = new JSONObject();
+            JSONObject json = new JSONObject();
             JSONArray jsonarray = new JSONArray();
             String urlFinal = "";
             String tagsFinal = "";
@@ -108,12 +107,12 @@ public class IfunnyScrapper {
             System.out.println("----- Tags Size ----- ::::: " + tags.size());
             for (Element tag : tags) {
                 try {
-                    
+
                     String hashtags = tag.attr("href").replace("/tags/", "");
                     System.out.println("----- HashTags ----- ::::: " + hashtags);
                     tagsFinal = tagsFinal + hashtags + ",";
                     jsonarray.put(hashtags);
-                    
+
                 } catch (Exception euhuy) {
                 }
             }
@@ -123,8 +122,6 @@ public class IfunnyScrapper {
             }
             System.out.println("----- Tags Final ----- ::::: " + tagsFinal);
             System.out.println("----- Urls Final ----- ::::: " + urlFinal);
-            
-           
 
             objHashCrawledData = new HashCrawledData();
             System.out.println("----- Image Url ----- ::::: " + e1.attr("src"));
@@ -222,7 +219,8 @@ public class IfunnyScrapper {
 
         String imagerlappend = imageUrl.replace("http://img.ifcdn.com/images/", "");
 
-        String destinationFile = "D:\\AuditMySite Project\\AuditeMySite\\IfunnyScrapper\\images\\" + imagerlappend;
+//        String destinationFile = "D:\\AuditMySite Project\\AuditeMySite\\IfunnyScrapper\\images\\" + imagerlappend;
+        String destinationFile = "/disk1/frompo3/public/assets/" + imagerlappend;
 
         saveImage(imageUrl, destinationFile);
         cropImages(destinationFile);
